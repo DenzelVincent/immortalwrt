@@ -1,0 +1,17 @@
+services:
+  opde-builder:
+    image: immortalwrt/opde:base
+    container_name: opde-builder
+    restart: unless-stopped
+    environment:
+      # 由构建脚本写入 CONFIG_CCACHE_DIR；rules.mk 不直接读环境变量
+      - CCACHE_DIR=/home/opde/.ccache
+    # 宿主机挂载目录属主需与容器内 opde(UID/GID 1000) 一致，否则源码和 ccache 无法写入
+    volumes:
+      - /home/denzel/opde-docker/opde:/home/opde/opde
+      - /home/denzel/opde-docker/immortalwrt-src:/home/opde/workdir
+      - /home/denzel/opde-docker/immortalwrt-ccache:/home/opde/.ccache
+    working_dir: /home/opde/workdir
+    tty: true
+    stdin_open: true
+    command: bash
