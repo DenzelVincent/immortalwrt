@@ -66,14 +66,14 @@ ImmortalWrt 是 [OpenWrt](https://openwrt.org) 的分支，移植了更多软件
 
 ### 本地编译方案（OPDE 容器）
 
-`24.10.6` 分支的 `docs/` 目录提供一套基于 WSL2 + Docker 的本地编译方案，使用 `immortalwrt/opde:base` 镜像（Ubuntu 20.04 构建环境），无需在宿主机安装全套编译依赖：
+`docs/` 目录提供一套基于 WSL2 + Docker 的本地编译方案，使用 `immortalwrt/opde:base` 镜像（Ubuntu 20.04 构建环境），无需在宿主机安装全套编译依赖：
 
 | 文件 | 作用 |
 | --- | --- |
-| [`docs/opde-compose.yaml`](https://github.com/DenzelVincent/immortalwrt/blob/24.10.6/docs/opde-compose.yaml) | 容器定义：挂载脚本、源码与 ccache 目录 |
-| [`docs/opde_init.sh`](https://github.com/DenzelVincent/immortalwrt/blob/24.10.6/docs/opde_init.sh) | 容器首次创建后的环境初始化（逐项确认，可跳过） |
-| [`docs/build-firmware.sh`](https://github.com/DenzelVincent/immortalwrt/blob/24.10.6/docs/build-firmware.sh) | 交互式本地编译助手（运行在容器内） |
-| [`docs/2026-10-20-固件构建配置说明.md`](https://github.com/DenzelVincent/immortalwrt/blob/24.10.6/docs/2026-10-20-%E5%9B%BA%E4%BB%B6%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.md) | 按机型 seed 的构建步骤与维护约定 |
+| [`docs/opde-compose.yaml`](docs/opde-compose.yaml) | 容器定义：挂载脚本、源码与 ccache 目录 |
+| [`docs/opde_init.sh`](docs/opde_init.sh) | 容器首次创建后的环境初始化（逐项确认，可跳过） |
+| [`docs/build-firmware.sh`](docs/build-firmware.sh) | 交互式本地编译助手（运行在容器内） |
+| [`docs/2026-10-20-固件构建配置说明.md`](docs/2026-10-20-固件构建配置说明.md) | 按机型 seed 的构建步骤与维护约定 |
 
 1. 启动容器（compose 文件名非默认，需用 `-f` 指定）：
 
@@ -133,7 +133,7 @@ make -j$(nproc) V=s
 - `=y` 表示编译并预装进固件；`=m` 表示只编译 ipk、不预装，刷机后需手动安装。
 - 单设备构建必须保留 `# CONFIG_TARGET_MULTI_PROFILE is not set`，并使用 `CONFIG_TARGET_mediatek_filogic_DEVICE_<机型>=y`。
 - 第三方 feed 由编译仓库（[ImmortalWrt-firmware-build](https://github.com/DenzelVincent/ImmortalWrt-firmware-build)）统一追加，源码仓库的 `feeds.conf.default` 只保留默认 feed。
-- 详细说明见 [`docs/2026-10-20-固件构建配置说明.md`](https://github.com/DenzelVincent/immortalwrt/blob/24.10.6/docs/2026-10-20-%E5%9B%BA%E4%BB%B6%E6%9E%84%E5%BB%BA%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.md)。
+- 详细说明见 [`docs/2026-10-20-固件构建配置说明.md`](docs/2026-10-20-固件构建配置说明.md)。
 
 ## 相关仓库
 
