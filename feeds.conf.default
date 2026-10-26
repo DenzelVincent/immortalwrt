@@ -2,4 +2,3 @@ src-git packages https://github.com/immortalwrt/packages.git^97af13986bcb1efa6fd
 src-git luci https://github.com/immortalwrt/luci.git^adb3df4dd156ee56cbf0d8a5578f5fb0d48e2685
 src-git routing https://github.com/openwrt/routing.git^ae3329ee440538aea96443908ac2af7ffa62973d
 src-git telephony https://github.com/openwrt/telephony.git^92892fa285360b8981f62bf4e0a097e6449e7e33
-src-git lucky https://github.com/gdy666/luci-app-lucky.git^9449a5250c61f1aa8f16b2d8e04a9da25c26e735
